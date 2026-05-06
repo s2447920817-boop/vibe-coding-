@@ -1,4 +1,5 @@
-import { useEffect, useRef, useState, type PointerEvent } from 'react';
+import { Link } from 'react-router';
+import { useEffect, useRef, useState, type CSSProperties, type PointerEvent } from 'react';
 import {
   Disc,
   FileText,
@@ -34,6 +35,8 @@ function useScrollReveal() {
   }, []);
   return ref;
 }
+
+const asset = (path: string) => `${import.meta.env.BASE_URL}${path.replace(/^\/+/, '')}`;
 
 /* ────────── Sidebar ────────── */
 function Sidebar() {
@@ -192,13 +195,13 @@ function HeroSection() {
           </p>
 
           <div className="flex items-center gap-4 mb-10">
-            <a
-              href="/gallery"
+            <Link
+              to="/gallery"
               className="btn-warm flex items-center gap-2 px-6 py-3 text-sm font-medium rounded-md"
             >
               <Play size={15} fill="currentColor" />
               Start Listening
-            </a>
+            </Link>
           </div>
 
           {/* Social Links */}
@@ -243,7 +246,7 @@ function HeroSection() {
               style={{ perspective: '800px' }}
             >
               <img
-                src="/hero-portrait.jpg"
+                src={asset('hero-portrait.jpg')}
                 alt="Featured Album"
                 className="w-full h-full object-cover"
               />
@@ -334,10 +337,10 @@ function PlayerSection() {
   }, [isDragging]);
 
   const albums = [
-    { title: 'NEVERMIND', artist: 'Gummy B / 鹤 The Crane / 熊仔', accent: '#4a7abf', cover: '/cover-nevermind.png', url: 'https://music.163.com/#/search/m/?s=NEVERMIND%20Gummy%20B&type=1', duration: 285 },
-    { title: '我想要做点流行音乐', artist: '回环 RingAgain', accent: '#8b5a3c', cover: '/cover-pop-songs.png', url: 'https://music.163.com/#/search/m/?s=%E6%88%91%E6%83%B3%E8%A6%81%E5%81%9A%E7%82%B9%E6%B5%81%E8%A1%8C%E9%9F%B3%E4%B9%90&type=1', duration: 305 },
-    { title: '普通朋友', artist: '张叶蕾', accent: '#6b8fa3', cover: '/cover-normal-friend.png', url: 'https://music.163.com/#/search/m/?s=%E6%99%AE%E9%80%9A%E6%9C%8B%E5%8F%8B%20%E5%BC%A0%E5%8F%B6%E8%95%BE&type=1', duration: 234 },
-    { title: '飞', artist: 'Matt吕彦良', accent: '#7a9abf', cover: '/cover-fly.png', url: 'https://music.163.com/#/search/m/?s=%E9%A3%9E%20Matt%E5%90%95%E5%BD%A6%E8%89%AF&type=1', duration: 220 },
+    { title: 'NEVERMIND', artist: 'Gummy B / 鹤 The Crane / 熊仔', accent: '#4a7abf', cover: asset('cover-nevermind.png'), url: 'https://music.163.com/#/search/m/?s=NEVERMIND%20Gummy%20B&type=1', duration: 285 },
+    { title: '我想要做点流行音乐', artist: '回环 RingAgain', accent: '#8b5a3c', cover: asset('cover-pop-songs.png'), url: 'https://music.163.com/#/search/m/?s=%E6%88%91%E6%83%B3%E8%A6%81%E5%81%9A%E7%82%B9%E6%B5%81%E8%A1%8C%E9%9F%B3%E4%B9%90&type=1', duration: 305 },
+    { title: '普通朋友', artist: '张叶蕾', accent: '#6b8fa3', cover: asset('cover-normal-friend.png'), url: 'https://music.163.com/#/search/m/?s=%E6%99%AE%E9%80%9A%E6%9C%8B%E5%8F%8B%20%E5%BC%A0%E5%8F%B6%E8%95%BE&type=1', duration: 234 },
+    { title: '飞', artist: 'Matt吕彦良', accent: '#7a9abf', cover: asset('cover-fly.png'), url: 'https://music.163.com/#/search/m/?s=%E9%A3%9E%20Matt%E5%90%95%E5%BD%A6%E8%89%AF&type=1', duration: 220 },
   ];
 
   const [activeAlbum, setActiveAlbum] = useState(0);
@@ -850,7 +853,10 @@ export default function Home() {
   return (
     <div
       className="site-shell min-h-screen"
-      style={{ color: '#f5e6d0' }}
+      style={{
+        color: '#f5e6d0',
+        '--vinyl-background-url': `url("${asset('vinyl-background-image2.png')}")`,
+      } as CSSProperties}
       onPointerMove={handlePointerMove}
     >
       <div className="site-background" aria-hidden="true" />

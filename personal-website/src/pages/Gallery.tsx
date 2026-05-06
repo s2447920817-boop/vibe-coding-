@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import { Link } from 'react-router';
 import { ArrowLeft, Camera } from 'lucide-react';
 
 function useScrollReveal() {
@@ -21,17 +22,19 @@ function useScrollReveal() {
   return ref;
 }
 
+const asset = (path: string) => `${import.meta.env.BASE_URL}${path.replace(/^\/+/, '')}`;
+
 export default function Gallery() {
   const ref1 = useScrollReveal();
   const ref2 = useScrollReveal();
 
   const photos = [
-    { src: '/hero-portrait.jpg', title: 'Portrait', subtitle: 'Studio Session 01' },
-    { src: '/album-photo-1.jpg', title: 'On the Road', subtitle: 'Desert Walk' },
-    { src: '/album-photo-2.png', title: 'Cover Art', subtitle: 'Album Concept' },
-    { src: '/grid-shelf.jpg', title: 'Collection', subtitle: 'Vinyl Shelf' },
-    { src: '/grid-coffee.jpg', title: 'Morning', subtitle: 'Coffee & Vinyl' },
-    { src: '/hero-cover.jpg', title: 'Shop', subtitle: 'Afterglow Store' },
+    { src: asset('hero-portrait.jpg'), title: 'Portrait', subtitle: 'Studio Session 01' },
+    { src: asset('album-photo-1.jpg'), title: 'On the Road', subtitle: 'Desert Walk' },
+    { src: asset('album-photo-2.png'), title: 'Cover Art', subtitle: 'Album Concept' },
+    { src: asset('grid-shelf.jpg'), title: 'Collection', subtitle: 'Vinyl Shelf' },
+    { src: asset('grid-coffee.jpg'), title: 'Morning', subtitle: 'Coffee & Vinyl' },
+    { src: asset('hero-cover.jpg'), title: 'Shop', subtitle: 'Afterglow Store' },
   ];
 
   return (
@@ -47,13 +50,13 @@ export default function Gallery() {
           borderBottom: '1px solid rgba(212, 165, 116, 0.1)',
         }}
       >
-        <a
-          href="/"
+        <Link
+          to="/"
           className="flex items-center gap-2 text-sm text-[#f5e6d0]/60 hover:text-[#d4a574] transition-colors"
         >
           <ArrowLeft size={16} />
           返回首页
-        </a>
+        </Link>
         <div className="flex-1" />
         <div className="flex items-center gap-2">
           <Camera size={16} className="text-[#d4a574]" />

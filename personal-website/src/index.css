@@ -65,7 +65,7 @@
   background:
     linear-gradient(90deg, rgba(8, 6, 4, 0.78) 0%, rgba(8, 6, 4, 0.56) 42%, rgba(8, 6, 4, 0.2) 100%),
     linear-gradient(180deg, rgba(8, 6, 4, 0.28) 0%, rgba(8, 6, 4, 0.82) 100%),
-    url('/vinyl-background-image2.png') center / cover no-repeat;
+    var(--vinyl-background-url) center / cover no-repeat;
   opacity: 0.94;
   transform: scale(1.025);
   animation: vinylBackdropBreath 18s ease-in-out infinite alternate;
