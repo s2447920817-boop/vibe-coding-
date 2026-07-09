@@ -69,6 +69,19 @@ Claude Code 会根据每个 skill 的 `description` 字段自动判断什么时�
 
 ---
 
+## Adaptive Superpowers
+
+`adaptive-superpowers/SKILL.md` 是对原版 Superpowers `using-superpowers` 入口的自适应优化：先判断任务风险，再选择轻量、标准或完整流程；执行中发现范围扩大、连续理解偏差或验证失败时自动升级。
+
+它不是完整 Superpowers 的替代包。请先安装 [obra/superpowers](https://github.com/obra/superpowers)，然后使用本文件替换：
+
+```text
+superpowers/skills/using-superpowers/SKILL.md
+```
+
+这样其余 Superpowers 子 Skill 保持不变，简单任务不再默认走完整重流程，复杂任务仍可进入完整方法论。
+
+---
 ## License
 
 MIT — 详见 [LICENSE](LICENSE)。
